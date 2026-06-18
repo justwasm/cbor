@@ -3078,7 +3078,7 @@ func fillFloat(t cborType, val float64, v reflect.Value) error {
 }
 
 func fillByteString(t cborType, val []byte, shared bool, v reflect.Value, bsts ByteStringToStringMode, bum BinaryUnmarshalerMode) error {
-	if bum == BinaryUnmarshalerByteString && reflect.PtrTo(v.Type()).Implements(typeBinaryUnmarshaler) {
+	if bum == BinaryUnmarshalerByteString && implements(reflect.PtrTo(v.Type()), typeBinaryUnmarshaler) {
 		if v.CanAddr() {
 			v = v.Addr()
 			if u, ok := v.Interface().(encoding.BinaryUnmarshaler); ok {

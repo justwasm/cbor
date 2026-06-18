@@ -69,7 +69,7 @@ func newTypeInfo(t reflect.Type) *typeInfo {
 		tInfo.spclType = specialTypeTag
 	} else if t == typeTime {
 		tInfo.spclType = specialTypeTime
-	} else if reflect.PtrTo(t).Implements(typeUnmarshaler) {
+	} else if implements(reflect.PtrTo(t), typeUnmarshaler) {
 		tInfo.spclType = specialTypeUnmarshalerIface
 	}
 
